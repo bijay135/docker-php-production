@@ -13,10 +13,9 @@ services:
         depends_on:
             - php
             - mysql
-        networks:
-            - components
         deploy:
-            mode: global
+            mode: replicated
+            replicas: 1
             restart_policy:
                 condition: on-failure
                 delay: 5s
@@ -28,8 +27,6 @@ services:
         volumes:
             - /home/bijay/docker-swarm-mode/server/php/php.ini:/usr/local/etc/php/conf.d/php.ini
             - /home/bijay/docker-swarm-mode/www:/var/www/html
-        networks:
-            - components
         deploy:
             mode: global
             restart_policy:
@@ -47,8 +44,6 @@ services:
         volumes:
             - /home/bijay/docker-swarm-mode/mysql/data:/var/lib/mysql
             - /home/bijay/docker-swarm-mode/mysql/dumps:/docker-entrypoint-initdb.d
-        networks:
-            - components
         deploy:
             mode: global
             restart_policy:
@@ -64,8 +59,6 @@ services:
         environment:
             PMA_HOST: mysql
             MYSQL_ROOT_PASSWORD: root
-        networks:
-            - components
         deploy:
             mode: global
             restart_policy:
@@ -73,8 +66,3 @@ services:
                 delay: 5s
                 max_attempts: 3
                 window: 60s
-            
-networks:
-    components:
-        driver: overlay
-        attachable: true
