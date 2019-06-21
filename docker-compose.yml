@@ -21,7 +21,8 @@ services:
                 window: 60s
             
     php:
-        image: php:7-fpm
+        build: ./server
+        image: php
         volumes:
             - /home/bijay/docker-swarm-mode/server/php/php.ini:/usr/local/etc/php/conf.d/php.ini
             - /home/bijay/docker-swarm-mode/www:/var/www/html
