@@ -55,6 +55,6 @@ services:
             mode: global
             
 networks:
-    LEMP:
-        driver:overlay
-        attachable:true
+    services:
+        driver: overlay
+        attachable: true
