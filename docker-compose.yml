@@ -11,16 +11,21 @@ services:
             - /home/bijay/docker-swarm-mode/server/nginx/default.conf:/etc/nginx/conf.d/default.conf
             - /home/bijay/docker-swarm-mode/www:/var/www/html
             - /etc/letsencrypt:/etc/letsencrypt
-        links:
-            - php
-            - mysql
-        
+        networks:
+            - services
+        deploy:
+            mode:global
+            
     php:
         image: php:7-fpm
         restart: always
         volumes:
             - /home/bijay/docker-swarm-mode/server/php/php.ini:/usr/local/etc/php/conf.d/php.ini
             - /home/bijay/docker-swarm-mode/www:/var/www/html
+        networks:
+            - services
+        deploy:
+            mode:global
            
     mysql:
         image: mysql:5.7     
@@ -32,6 +37,10 @@ services:
         volumes:
             - /home/bijay/docker-swarm-mode/mysql/data:/var/lib/mysql
             - /home/bijay/docker-swarm-mode/mysql/dumps:/docker-entrypoint-initdb.d
+        networks:
+            - services
+        deploy:
+            mode:global
             
     phpmyadmin:
         image: phpmyadmin/phpmyadmin
@@ -40,5 +49,12 @@ services:
             - "8000:80"
         environment:
             MYSQL_ROOT_PASSWORD: root
-        links: 
-            - mysql:db
+        networks:
+            - services
+        deploy:
+            mode:global
+            
+networks:
+    LEMP:
+        driver:overlay
+        attachable:true
