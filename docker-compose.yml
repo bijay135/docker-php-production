@@ -18,7 +18,10 @@ services:
         deploy:
             mode: global
             restart_policy:
-                condition: unless-stopped
+                condition: on-failure
+                delay: 5s
+                max_attempts: 3
+                window: 60s
             
     php:
         image: php:7-fpm
@@ -30,7 +33,10 @@ services:
         deploy:
             mode: global
             restart_policy:
-                condition: unless-stopped
+                condition: on-failure
+                delay: 5s
+                max_attempts: 3
+                window: 60s
            
     mysql:
         image: mysql:5.7     
@@ -46,7 +52,10 @@ services:
         deploy:
             mode: global
             restart_policy:
-                condition: unless-stopped
+                condition: on-failure
+                delay: 5s
+                max_attempts: 3
+                window: 60s
             
     phpmyadmin:
         image: phpmyadmin/phpmyadmin
@@ -60,7 +69,10 @@ services:
         deploy:
             mode: global
             restart_policy:
-                condition: unless-stopped
+                condition: on-failure
+                delay: 5s
+                max_attempts: 3
+                window: 60s
             
 networks:
     services:
