@@ -14,7 +14,7 @@ services:
         networks:
             - services
         deploy:
-            mode:global
+            mode: global
             
     php:
         image: php:7-fpm
@@ -25,7 +25,7 @@ services:
         networks:
             - services
         deploy:
-            mode:global
+            mode: global
            
     mysql:
         image: mysql:5.7     
@@ -40,7 +40,7 @@ services:
         networks:
             - services
         deploy:
-            mode:global
+            mode: global
             
     phpmyadmin:
         image: phpmyadmin/phpmyadmin
@@ -52,7 +52,7 @@ services:
         networks:
             - services
         deploy:
-            mode:global
+            mode: global
             
 networks:
     LEMP:
