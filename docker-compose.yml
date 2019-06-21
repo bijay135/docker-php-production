@@ -14,7 +14,7 @@ services:
             - php
             - mysql
         networks:
-            - services
+            - components
         deploy:
             mode: global
             restart_policy:
@@ -29,7 +29,7 @@ services:
             - /home/bijay/docker-swarm-mode/server/php/php.ini:/usr/local/etc/php/conf.d/php.ini
             - /home/bijay/docker-swarm-mode/www:/var/www/html
         networks:
-            - services
+            - components
         deploy:
             mode: global
             restart_policy:
@@ -48,7 +48,7 @@ services:
             - /home/bijay/docker-swarm-mode/mysql/data:/var/lib/mysql
             - /home/bijay/docker-swarm-mode/mysql/dumps:/docker-entrypoint-initdb.d
         networks:
-            - services
+            - components
         deploy:
             mode: global
             restart_policy:
@@ -65,7 +65,7 @@ services:
             PMA_HOST: mysql
             MYSQL_ROOT_PASSWORD: root
         networks:
-            - services
+            - components
         deploy:
             mode: global
             restart_policy:
@@ -75,4 +75,5 @@ services:
                 window: 60s
             
 networks:
-    services:
+    components:
+        driver: bridge
