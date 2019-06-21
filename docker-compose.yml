@@ -76,4 +76,5 @@ services:
             
 networks:
     components:
-        driver: bridge
+        driver: overlay
+        attachable: true
