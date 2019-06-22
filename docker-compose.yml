@@ -19,6 +19,7 @@ services:
                 window: 90s
             
     php:
+        build: ./server
         image: php:mysqli
         volumes:
             - /home/bijay/docker-swarm-mode/server/php/php.ini:/usr/local/etc/php/conf.d/php.ini
