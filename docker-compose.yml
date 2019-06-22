@@ -42,7 +42,8 @@ services:
             - /home/bijay/docker-swarm-mode/mysql/data:/var/lib/mysql
             - /home/bijay/docker-swarm-mode/mysql/dumps:/docker-entrypoint-initdb.d
         deploy:
-            mode: global
+            mode: replicated
+            replicas: 1
             restart_policy:
                 condition: on-failure
                 delay: 5s
