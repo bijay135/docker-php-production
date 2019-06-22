@@ -62,6 +62,7 @@ services:
         ports:
             - "8000:80"
         environment:
+            PMA_HOST: mysql 
             MYSQL_ROOT_PASSWORD: root
         networks:
             - components
