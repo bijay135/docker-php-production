@@ -58,7 +58,8 @@ services:
             PMA_HOST: mysql
             MYSQL_ROOT_PASSWORD: root
         deploy:
-            mode: global
+            mode: replicated    
+            replicas: 1
             restart_policy:
                 condition: on-failure
                 delay: 5s
