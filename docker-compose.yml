@@ -11,7 +11,8 @@ services:
             - /home/bijay/docker-swarm-mode/www:/var/www/html
             - /etc/letsencrypt:/etc/letsencrypt
         deploy:
-            mode: global
+            mode: replicated
+            replicas: 1
             restart_policy:
                 condition: on-failure
                 delay: 5s
@@ -25,7 +26,8 @@ services:
             - /home/bijay/docker-swarm-mode/server/php/php.ini:/usr/local/etc/php/conf.d/php.ini
             - /home/bijay/docker-swarm-mode/www:/var/www/html
         deploy:
-            mode: global
+            mode: replicated
+            replicas: 1
             restart_policy:
                 condition: on-failure
                 delay: 5s
@@ -43,7 +45,7 @@ services:
             - /home/bijay/docker-swarm-mode/mysql/dumps:/docker-entrypoint-initdb.d
         deploy:
             mode: replicated
-            replicas: 1
+            replicas: 2
             restart_policy:
                 condition: on-failure
                 delay: 5s
