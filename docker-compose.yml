@@ -10,8 +10,6 @@ services:
             - /home/bijay/docker-swarm-mode/server/nginx/default.conf:/etc/nginx/conf.d/default.conf
             - /home/bijay/docker-swarm-mode/www:/var/www/html
             - /etc/letsencrypt:/etc/letsencrypt
-        networks:
-            - components
         deploy:
             mode: replicated
             replicas: 1
@@ -19,15 +17,13 @@ services:
                 condition: on-failure
                 delay: 5s
                 max_attempts: 3
-                window: 60s
+                window: 90s
             
     php:
         image: php-mysqli
         volumes:
             - /home/bijay/docker-swarm-mode/server/php/php.ini:/usr/local/etc/php/conf.d/php.ini
             - /home/bijay/docker-swarm-mode/www:/var/www/html
-        networks:
-            - components
         deploy:
             mode: replicated
             replicas: 1
@@ -35,7 +31,7 @@ services:
                 condition: on-failure
                 delay: 5s
                 max_attempts: 3
-                window: 60s
+                window: 90s
            
     mysql:
         image: mysql:5.7     
@@ -46,8 +42,6 @@ services:
         volumes:
             - /home/bijay/docker-swarm-mode/mysql/data:/var/lib/mysql
             - /home/bijay/docker-swarm-mode/mysql/dumps:/docker-entrypoint-initdb.d
-        networks:
-            - components
         deploy:
             mode: replicated
             replicas: 1
@@ -55,16 +49,15 @@ services:
                 condition: on-failure
                 delay: 5s
                 max_attempts: 3
-                window: 60s
+                window: 90s
             
     phpmyadmin:
         image: phpmyadmin/phpmyadmin
         ports:
             - "8000:80"
         environment:
+            PMA_HOST: mysql
             MYSQL_ROOT_PASSWORD: root
-        networks:
-            - components
         deploy:
             mode: replicated
             replicas: 1
@@ -72,9 +65,4 @@ services:
                 condition: on-failure
                 delay: 5s
                 max_attempts: 3
-                window: 60s
-            
-networks:
-    components:
-        driver: overlay
-        attachable: true
+                window: 90s
