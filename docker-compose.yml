@@ -12,6 +12,7 @@ services:
             - /etc/letsencrypt:/etc/letsencrypt
         depends_on:
             - php
+            - mysql
         deploy:
             mode: replicated
             replicas: 1
@@ -22,12 +23,10 @@ services:
                 window: 90s
             
     php:
-        image: php:7-fpm
+        image: php-mysqli
         volumes:
             - /home/bijay/docker-swarm-mode/server/php/php.ini:/usr/local/etc/php/conf.d/php.ini
             - /home/bijay/docker-swarm-mode/www:/var/www/html
-        depends_on:
-            - mysql
         deploy:
             mode: replicated
             replicas: 1
