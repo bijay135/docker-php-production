@@ -21,7 +21,7 @@ services:
             
     php:
         build: ./server
-        image: php:mysqli
+        image: php-mysqli:7-fpm
         volumes:
             - /home/bijay/docker-swarm-mode/server/php/php.ini:/usr/local/etc/php/conf.d/php.ini
             - /home/bijay/docker-swarm-mode/www:/var/www/html
