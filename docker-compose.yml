@@ -14,10 +14,10 @@ services:
             mode: replicated
             replicas: 1
             restart_policy:
-                condition: on-failure
-                delay: 5s
-                max_attempts: 3
+                max_attempts: 5
                 window: 90s
+            placement:
+                constraints: [node.role == worker]
             
     php:
         build: ./server
@@ -29,10 +29,10 @@ services:
             mode: replicated
             replicas: 1
             restart_policy:
-                condition: on-failure
-                delay: 5s
-                max_attempts: 3
+                max_attempts: 5
                 window: 90s
+            placement:
+                constraints: [node.role == worker]
            
     mysql:
         image: mysql:5.7     
@@ -47,10 +47,10 @@ services:
             mode: replicated
             replicas: 1
             restart_policy:
-                condition: on-failure
-                delay: 5s
-                max_attempts: 3
+                max_attempts: 5
                 window: 90s
+            placement:
+                constraints: [node.role == manager]
             
     phpmyadmin:
         image: phpmyadmin/phpmyadmin
@@ -63,7 +63,7 @@ services:
             mode: replicated    
             replicas: 1
             restart_policy:
-                condition: on-failure
-                delay: 5s
-                max_attempts: 3
+                max_attempts: 5
                 window: 90s
+            placement:
+                constraints: [node.role == manager]
