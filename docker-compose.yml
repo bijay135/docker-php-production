@@ -12,7 +12,7 @@ services:
             - /etc/letsencrypt:/etc/letsencrypt
         deploy:
             mode: replicated
-            replicas: 1
+            replicas: 2
             restart_policy:
                 max_attempts: 5
                 window: 90s
@@ -27,7 +27,7 @@ services:
             - /home/bijay/docker-swarm-mode/www:/var/www/html
         deploy:
             mode: replicated
-            replicas: 1
+            replicas: 2
             restart_policy:
                 max_attempts: 5
                 window: 90s
