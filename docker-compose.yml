@@ -30,7 +30,7 @@ services:
             placement:
                 constraints: [node.role == worker]
         labels:
-                              #   - traefik.docker.network=lemp_default
+            - traefik.docker.network=default
             - traefik.port=80
             - traefik.frontend.rule=Host:localhost
             - traefik.backend=nginx
