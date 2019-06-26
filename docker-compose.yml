@@ -23,7 +23,7 @@ services:
         image: nginx:1.16.0
         ports:
             - "80"
-            - "443:443"  
+            - "443"  
         volumes:
             - /home/bijay/docker-swarm-mode/server/nginx/default.conf:/etc/nginx/conf.d/default.conf
             - /home/bijay/docker-swarm-mode/www:/var/www/html
