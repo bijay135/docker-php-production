@@ -29,7 +29,7 @@ services:
                 max_attempts: 5
             labels:
                 - traefik.port=80
-                - traefik.frontend.rule=Host:nginx.localhost
+                - traefik.frontend.rule=PathPrefix:/
                 - traefik.backend=nginx
                 - traefik.backend.loadbalancer.stickiness=true
             placement:
