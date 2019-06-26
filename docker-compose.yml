@@ -1,6 +1,24 @@
 version: '3.2'
 
 services:
+    traefik:
+        image: traefik
+        ports:
+            - "80:80"
+            - "443:443"
+            - "8080:8080"
+        command: 
+            - "--docker"
+            - "--docker.swarmMode"
+            - "--docker.watch"
+        volumes:
+            - /var/run/docker.sock:/var/run/docker.sock
+        deploy:
+            mode: replicated
+            replicas: 1 
+            placement:
+                constraints: [node.role == manager]
+      
     nginx:
         image: nginx:1.16.0
         ports:
@@ -17,6 +35,9 @@ services:
                 max_attempts: 5
             placement:
                 constraints: [node.role == worker]
+        labels:
+            - "traefik.port=80"
+            - "traefik.backend.loadbalancer.sticky=true"
             
     php:
         build: ./server
