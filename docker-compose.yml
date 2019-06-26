@@ -15,7 +15,6 @@ services:
             replicas: 2
             restart_policy:
                 max_attempts: 5
-                window: 90s
             placement:
                 constraints: [node.role == worker]
             
@@ -30,7 +29,6 @@ services:
             replicas: 2
             restart_policy:
                 max_attempts: 5
-                window: 90s
             placement:
                 constraints: [node.role == worker]
            
@@ -48,7 +46,6 @@ services:
             replicas: 1
             restart_policy:
                 max_attempts: 5
-                window: 90s
             placement:
                 constraints: [node.role == manager]
             
@@ -64,6 +61,5 @@ services:
             replicas: 1
             restart_policy:
                 max_attempts: 5
-                window: 90s
             placement:
                 constraints: [node.role == manager]
