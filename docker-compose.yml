@@ -7,7 +7,7 @@ services:
             - "80:80"
             - "443:443"
             - "8080:8080"
-        command: --docker --docker.swarmMode --docker.watch --api
+        command: --api --docker --docker.swarmMode --docker.watch 
         volumes:
             - /var/run/docker.sock:/var/run/docker.sock
         deploy:
