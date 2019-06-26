@@ -31,10 +31,11 @@ services:
                 constraints: [node.role == worker]
         labels:
                               #   - traefik.docker.network=lemp_default
+            - traefik.port=80
             - traefik.frontend.rule=Host:localhost
             - traefik.backend=nginx
-            - traefik.port=80
-            
+            - traefik.backend.loadbalancer.stickiness=true
+    
     php:
         build: ./server
         image: php-mysqli:7-fpm
