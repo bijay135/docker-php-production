@@ -10,7 +10,6 @@ services:
         command: --api --web --docker --docker.swarmmode --docker.watch 
         volumes:
             - /var/run/docker.sock:/var/run/docker.sock
-            - /dev/null:/traefik.toml
         deploy:
             mode: replicated
             replicas: 1 
@@ -30,7 +29,7 @@ services:
                 max_attempts: 5
             labels:
                 - traefik.port=80
-                - traefik.frontend.rule=nginx
+                - traefik.backend=nginx
                 - traefik.backend.loadbalancer.stickiness=true
             placement:
                 constraints: [node.role == worker]
