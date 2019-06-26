@@ -7,9 +7,14 @@ services:
             - "80:80"
             - "443:443"
             - "8080:8080"
-        command: --api --web --docker --docker.swarmmode --docker.watch 
+        command: 
+                - "--api --web"
+                - "--docker.domain=docker.localhost"
+                - "--docker --docker.swarmmode --docker.watch"
+                - "--logLevel=DEBUG"
         volumes:
             - /var/run/docker.sock:/var/run/docker.sock
+            - /dev/null:/traefik.toml
         deploy:
             mode: replicated
             replicas: 1 
