@@ -48,9 +48,11 @@ services:
             replicas: 2
             restart_policy:
                 max_attempts: 5
+            labels:
+                - traefik.backend.loadbalancer.stickiness=true
             placement:
                 constraints: [node.role == worker]
-           
+            
     mysql:
         image: mysql:5.7     
         ports: 
