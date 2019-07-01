@@ -1,25 +1,11 @@
 version: '3.2'
 
 services:
-    traefik:
-        image: traefik
-        ports:
-            - "80:80"
-            - "443:443"
-            - "8080:8080"
-        command: --api --web --docker.domain=docker.localhost \
-                 --docker --docker.swarmmode --docker.watch --logLevel=DEBUG
-        volumes:
-            - /var/run/docker.sock:/var/run/docker.sock
-            - /dev/null:/traefik.toml
-        deploy:
-            mode: replicated
-            replicas: 1 
-            placement:
-                constraints: [node.role == manager]
-      
     nginx:
         image: nginx:1.16.0
+        ports:
+            - "80:80"
+            - "443:443"  
         volumes:
             - /home/bijay/docker-swarm-mode/server/nginx/default.conf:/etc/nginx/conf.d/default.conf
             - /home/bijay/www:/var/www/html
@@ -29,11 +15,6 @@ services:
             replicas: 2
             restart_policy:
                 max_attempts: 5
-            labels:
-                - traefik.port=80
-                - traefik.frontend.rule=PathPrefix:/
-                - traefik.backend=nginx
-                - traefik.backend.loadbalancer.stickiness=true
             placement:
                 constraints: [node.role == worker]
     
@@ -48,8 +29,6 @@ services:
             replicas: 2
             restart_policy:
                 max_attempts: 5
-            labels:
-                - traefik.backend.loadbalancer.stickiness=true
             placement:
                 constraints: [node.role == worker]
             
