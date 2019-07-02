@@ -36,8 +36,6 @@ services:
         image: redis
         ports:
             - "6379:6379"
-        environment:
-            REDIS_PASSWORD: redis123
         command: redis-server --appendonly yes
         volumes:
             - /home/bijay/redis:/data
