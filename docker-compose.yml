@@ -24,7 +24,7 @@ services:
         volumes:
             - /home/bijay/docker-swarm-mode/server/php/php.ini:/usr/local/etc/php/conf.d/php.ini
             - /home/bijay/www/html:/var/www/html
-            - /home/bijay/www/session:/tmp
+                              #   - /home/bijay/www/session:/tmp/session
         deploy:
             mode: replicated
             replicas: 2
