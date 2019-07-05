@@ -37,7 +37,7 @@ services:
         image: redis:3.2
         ports:
             - "6379:6379"
-        command: redis-server
+        command: redis-server --appendonly yes
         volumes:
             - /home/bijay/redis:/data
         deploy:
