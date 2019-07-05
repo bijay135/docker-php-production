@@ -32,21 +32,6 @@ services:
                 max_attempts: 5
             placement:
                 constraints: [node.role == worker]
-    
-    redis:
-        image: redis:3.2
-        ports:
-            - "6379:6379"
-        command: redis-server --appendonly yes
-        volumes:
-            - /home/bijay/redis:/data
-        deploy:
-            mode: replicated
-            replicas: 1
-            restart_policy:
-                max_attempts: 5
-            placement:
-                constraints: [node.role == manager]
         
     mysql:
         image: mysql:5.7     
