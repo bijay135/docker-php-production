@@ -17,6 +17,8 @@ services:
                 max_attempts: 5
             placement:
                 constraints: [node.role == worker]
+        networks:
+            - docker_default 
     
     php:
         build: ./server
@@ -31,21 +33,9 @@ services:
                 max_attempts: 5
             placement:
                 constraints: [node.role == worker]
+        networks:
+            - docker_default 
                 
-    memcached:
-        image: memcached
-        ports:
-            - "11211:11211"
-        environment:
-            MEMCACHED_CACHE_SIZE: 128
-        deploy:
-            mode: replicated
-            replicas: 1
-            restart_policy:
-                max_attempts: 5
-            placement:
-                constraints: [node.role == manager]
-       
     mysql:
         image: mysql:5.7     
         ports: 
@@ -65,6 +55,8 @@ services:
                 max_attempts: 5
             placement:
                 constraints: [node.role == manager]
+        networks:
+            - docker_default 
             
     phpmyadmin:
         image: phpmyadmin/phpmyadmin
@@ -79,3 +71,9 @@ services:
                 max_attempts: 5
             placement:
                 constraints: [node.role == manager]
+        networks:
+            - docker_default 
+            
+networks:
+    docker_default:
+        external: true
