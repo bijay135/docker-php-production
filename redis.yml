@@ -6,10 +6,10 @@ services:
         ports:
             - "6379:6379"    
         environment:
-            ALLOW_EMPTY_PASSWORD: yes
+            - ALLOW_EMPTY_PASSWORD=yes
         command: redis-server
         volumes:
-            - /home/bijay/redis:/data
+            - /home/bijay/redis:/bitnami/redis/data
         deploy:
             mode: replicated
             replicas: 1
