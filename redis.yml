@@ -1,12 +1,13 @@
 version: '3.7'
 
 services:
-    memcached:
-        image: memcached
+    redis:
+        image: redis
         ports:
-            - "11211:11211"
-        environment:
-            MEMCACHED_CACHE_SIZE: 128
+            - "6379:6379"    
+        command: redis-server
+        volumes:
+            - home/bijay/redis:/data
         deploy:
             mode: replicated
             replicas: 1
