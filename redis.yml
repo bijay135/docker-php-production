@@ -2,13 +2,12 @@ version: '3.7'
 
 services:
     redis:
-        image: bitnami/redis
+        image: redis:3.2
         ports:
             - "6379:6379"    
-        environment:
-            - ALLOW_EMPTY_PASSWORD=yes
+        command: redis-server --appendonly yes
         volumes:
-            - /home/bijay/redis:/bitnami/redis/data
+            - /home/bijay/redis:/data
         deploy:
             mode: replicated
             replicas: 1
