@@ -10,3 +10,9 @@ services:
         environment:
             MEMCACHED_MAX_MEMORY: 128
             SLAVE: "139.162.42.173"
+        networks:
+            - docker_default 
+            
+networks:
+    docker_default:
+        external: true
