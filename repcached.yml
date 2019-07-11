@@ -1,0 +1,40 @@
+version: '3.7'
+
+services:
+    repcached_worker-node-1:
+        image: oktec/repcached
+        ports:
+            - "127.0.0.1:11211:11211"
+            - "11212:11212"
+        environment:
+            SLAVE: "139.162.42.173"
+        deploy:
+            mode: replicated
+            replicas: 1
+            restart_policy:
+                max_attempts: 5
+            placement:
+                constraints: [node.hostname == worker-node-1]
+        networks:
+            - docker_default 
+            
+    repcached_worker-node-2:
+        image: oktec/repcached
+        ports:
+            - "127.0.0.1:11211:11211"
+            - "11212:11212"
+        environment:
+            SLAVE: "139.162.47.123"
+        deploy:
+            mode: replicated
+            replicas: 1
+            restart_policy:
+                max_attempts: 5
+            placement:
+                constraints: [node.hostname == worker-node-2]
+        networks:
+            - docker_default 
+            
+networks:
+    docker_default:
+        external: true
