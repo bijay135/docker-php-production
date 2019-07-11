@@ -1,7 +1,7 @@
-FROM php:7-fpm
+FROM php:7.1-fpm
 
 RUN docker-php-ext-install mysqli \
-	&& pecl install redis \
+	&& pecl install redis-3.0.0 \
 	&& docker-php-ext-enable redis
 	
     # && apt-get update \
