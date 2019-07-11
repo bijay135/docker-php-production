@@ -1,0 +1,18 @@
+version: '3.7'
+
+services:
+    repcached:
+        image: memcached
+        ports:
+            - "11212:11212"
+        environment:
+            MEMCACHED_MAX_MEMORY: 128
+        deploy:
+            mode: replicated
+            replicas: 1
+            restart_policy:
+                max_attempts: 5
+            placement:
+                constraints: [node.role == worker]
+        networks:
+            - docker_default 
