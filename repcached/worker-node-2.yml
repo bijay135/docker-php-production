@@ -1,0 +1,18 @@
+version: '3.7'
+
+services:
+    memcached:
+        image: oktec/repcached
+        restart: always
+        ports:
+            - "127.0.0.1:11211:11211"
+            - "11212:11212"
+        environment:
+            MEMCACHED_MAX_MEMORY: 128
+            SLAVE: "139.162.47.123"
+        networks:
+            - docker_default 
+            
+networks:
+    docker_default:
+        external: true
