@@ -5,7 +5,6 @@ services:
         image: redis
         ports:
             - "6379:6379"
-        hostname: redis
         volumes:
             - /home/bijay/redis:/data
         deploy:
