@@ -4,7 +4,7 @@ services:
     repcached:
         image: memcached
         ports:
-            - "11212:11212"
+            - "11211:11211"
         environment:
             MEMCACHED_MAX_MEMORY: 128
         deploy:
