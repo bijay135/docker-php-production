@@ -22,7 +22,7 @@ services:
     
     php:
         build: ./server
-        image: php-ext:7.1.0-fpm
+        image: php-ext:7-fpm
         volumes:
             - /home/bijay/docker-swarm-mode/server/php/php.ini:/usr/local/etc/php/conf.d/php.ini
             - /home/bijay/www:/var/www/html
