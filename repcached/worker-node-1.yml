@@ -8,8 +8,7 @@ services:
             - "127.0.0.1:11211:11211"
             - "11212:11212"
         environment:
-            MEMCACHED_MAX_MEMORY: 128
-            SLAVE: "139.162.42.173"
+            SLAVE="139.162.42.173"
         networks:
             - docker_default 
             
