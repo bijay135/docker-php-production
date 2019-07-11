@@ -16,3 +16,7 @@ services:
                 constraints: [node.role == worker]
         networks:
             - docker_default 
+            
+networks:
+    docker_default:
+        external: true
