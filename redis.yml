@@ -21,11 +21,11 @@ services:
     redis-master:
         image: bitnami/redis
         ports:
-            - "6379:6379"
-         environment:
+            - '6379:6379'
+        environment:
             REDIS_REPLICATION_MODE: master
             ALLOW_EMPTY_PASSWORD: yes
-                              # REDIS_PASSWORD: "12345"
+                             # REDIS_PASSWORD: "12345"
         volumes:
             - /home/bijay/redis/master:/bitnami/redis/data
         deploy:
@@ -41,7 +41,7 @@ services:
     redis-slave:
         image: bitnami/redis
         ports:
-            - "6379:6379"
+            - '6379:6379'
         environment:
             REDIS_REPLICATION_MODE: slave
             REDIS_MASTER_HOST: redis-master
