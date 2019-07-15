@@ -17,7 +17,7 @@ services:
         networks:
             - docker_default 
     
-    redis:
+    redis-replica:
         image: redis
         command: redis-server /home/bijay/redis/redis.conf
         volumes:
