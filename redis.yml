@@ -8,9 +8,7 @@ services:
         environment:
             REDIS_MASTER_HOST: redis-master
                               # REDIS_MASTER_PASSWORD: "12345"
-                              # REDIS_SENTINEL_QUORUM:  2
-        volumes:
-            - /home/bijay/redis/sentinel:/bitnami
+            REDIS_SENTINEL_QUORUM:  2
         deploy:
             mode: global
             restart_policy:
