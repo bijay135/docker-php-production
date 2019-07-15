@@ -46,6 +46,7 @@ services:
             REDIS_REPLICATION_MODE: slave
             REDIS_MASTER_HOST: redis-master
                               # REDIS_MASTER_PASSWORD: "12345"
+            ALLOW_EMPTY_PASSWORD: "yes"
                               # REDIS_PASSWORD: "56789"
         volumes:
             - /home/bijay/redis/slave:/data
