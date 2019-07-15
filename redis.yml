@@ -4,7 +4,7 @@ services:
     redis-sentinel:
         image: bitnami/redis-sentinel
         ports:
-            - '26379:26379'
+            - "26379:26379"
         environment:
             REDIS_MASTER_HOST: redis-master
                               # REDIS_MASTER_PASSWORD: "12345"
@@ -21,10 +21,10 @@ services:
     redis-master:
         image: bitnami/redis
         ports:
-            - '6379:6379'
+            - "6379:6379"
         environment:
             REDIS_REPLICATION_MODE: master
-            ALLOW_EMPTY_PASSWORD: yes
+            ALLOW_EMPTY_PASSWORD: "yes"
                              # REDIS_PASSWORD: "12345"
         volumes:
             - /home/bijay/redis/master:/bitnami/redis/data
@@ -41,7 +41,7 @@ services:
     redis-slave:
         image: bitnami/redis
         ports:
-            - '6379:6379'
+            - "6379:6379"
         environment:
             REDIS_REPLICATION_MODE: slave
             REDIS_MASTER_HOST: redis-master
