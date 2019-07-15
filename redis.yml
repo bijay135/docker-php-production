@@ -1,7 +1,7 @@
 version: '3.7'
 
 services:
-    redis-master:
+    redis:
         image: redis
         command: redis-server /home/bijay/redis/redis.conf
         volumes:
@@ -17,7 +17,7 @@ services:
         networks:
             - docker_default 
     
-    redis-replica:
+    redis:
         image: redis
         command: redis-server /home/bijay/redis/redis.conf
         volumes:
