@@ -49,7 +49,7 @@ services:
             ALLOW_EMPTY_PASSWORD: "yes"
                               # REDIS_PASSWORD: "56789"
         volumes:
-            - /home/bijay/redis/slave:/data
+            - /home/bijay/redis/slave:/bitnami/redis/data
         deploy:
             mode: replicated
             replicas: 2
