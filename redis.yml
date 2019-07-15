@@ -1,10 +1,12 @@
 version: '3.7'
 
 services:
-    redis:
+    redis-master:
         image: redis
+        command: redis-server /home/bijay/redis/redis.conf
         volumes:
-            - /home/bijay/redis:/data
+            - /home/bijay/redis/redis.conf:/usr/local/etc/redis/redis.conf
+            - /home/bijay/redis/data:/data
         deploy:
             mode: replicated
             replicas: 1
@@ -12,6 +14,22 @@ services:
                 max_attempts: 5
             placement:
                 constraints: [node.role == manager]
+        networks:
+            - docker_default 
+    
+    redis-replica:
+        image: redis
+        command: redis-server /home/bijay/redis/redis.conf
+        volumes:
+            - /home/bijay/redis/redis.conf:/usr/local/etc/redis/redis.conf
+            - /home/bijay/redis/data:/data
+        deploy:
+            mode: replicated
+            replicas: 1
+            restart_policy:
+                max_attempts: 5
+            placement:
+                constraints: [node.role == worker]
         networks:
             - docker_default 
              
