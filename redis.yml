@@ -1,12 +1,33 @@
 version: '3.7'
 
 services:
-    redis:
-        image: redis
+    redis-sentinel:
+        image: bitnami/redis-sentinel
+        ports:
+            - '26379:26379'
+        environment:
+            REDIS_MASTER_HOST: redis-master
+                              # REDIS_MASTER_PASSWORD: "12345"
+                              # REDIS_SENTINEL_QUORUM:  2
+        volumes:
+            - /home/bijay/redis/sentinel:/bitnami
+        deploy:
+            mode: global
+            restart_policy:
+                max_attempts: 5
+        networks:
+            - docker_default 
+           
+    redis-master:
+        image: bitnami/redis
         ports:
             - "6379:6379"
+         environment:
+            REDIS_REPLICATION_MODE: master
+            ALLOW_EMPTY_PASSWORD: yes
+                              # REDIS_PASSWORD: "12345"
         volumes:
-            - /home/bijay/redis:/data
+            - /home/bijay/redis/master:/bitnami/redis/data
         deploy:
             mode: replicated
             replicas: 1
@@ -17,6 +38,27 @@ services:
         networks:
             - docker_default 
             
+    redis-slave:
+        image: bitnami/redis
+        ports:
+            - "6379:6379"
+        environment:
+            REDIS_REPLICATION_MODE: slave
+            REDIS_MASTER_HOST: redis-master
+                              # REDIS_MASTER_PASSWORD: "12345"
+                              # REDIS_PASSWORD: "56789"
+        volumes:
+            - /home/bijay/redis/slave:/data
+        deploy:
+            mode: replicated
+            replicas: 2
+            restart_policy:
+                max_attempts: 5
+            placement:
+                constraints: [node.role == worker]
+        networks:
+            - docker_default 
+             
 networks:
     docker_default:
         external: true
