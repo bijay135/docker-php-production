@@ -2,8 +2,12 @@ version: '3.7'
 
 services:
     redis-sentinel:
-        image: redis
-        command: redis-server --sentinel --sentinel monitor mymaster redis 6379 2
+        image: s7anley/redis-sentinel-docker
+        environment:
+            MASTER_NAME: redis-master
+            MASTER_NAME: redis
+            REDIS_PORT: 6379
+            QUORUM: 2
         deploy:
             mode: global
             restart_policy:
