@@ -3,8 +3,6 @@ version: '3.7'
 services:
     redis-sentinel:
         image: bitnami/redis-sentinel
-        ports:
-            - "26379:26379"
         volumes:
             - /home/bijay/redis/sentinel.conf:/bitnami/redis-sentinel/conf/sentinel.conf
         deploy:
