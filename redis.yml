@@ -3,11 +3,8 @@ version: '3.7'
 services:
     redis-sentinel:
         image: s7anley/redis-sentinel-docker
-        environment:
-            MASTER_NAME: mymaster
-            MASTER: redis
-            REDIS_PORT: 6379
-            QUORUM: 2
+        volumes:
+            - /home/bijay/docker-swarm-mode/server/redis/sentinel.conf:/etc/sentinel.conf
         deploy:
             mode: global
             restart_policy:
@@ -18,8 +15,8 @@ services:
         image: redis
         command: redis-server /usr/local/etc/redis/redis.conf
         volumes:
-            - /home/bijay/redis/redis.conf:/usr/local/etc/redis/redis.conf
-            - /home/bijay/redis/data:/data
+            - /home/bijay/docker-swarm-mode/server/redis/redis-master.conf:/usr/local/etc/redis/redis.conf
+            - /home/bijay/redis-data:/data
         deploy:
             mode: replicated
             replicas: 1
@@ -34,8 +31,8 @@ services:
         image: redis
         command: redis-server /usr/local/etc/redis/redis.conf
         volumes:
-            - /home/bijay/redis/redis.conf:/usr/local/etc/redis/redis.conf
-            - /home/bijay/redis/data:/data
+            - /home/bijay/docker-swarm-mode/server/redis/redis-replica.conf:/usr/local/etc/redis/redis.conf
+            - /home/bijay/redis-data:/data
         deploy:
             mode: replicated
             replicas: 2
