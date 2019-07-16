@@ -37,7 +37,8 @@ services:
             - docker_default 
                
     mysql:
-        image: bitnami/mysql:5.7 user: root
+        image: bitnami/mysql:5.7 
+        user: root
         ports:
             - "3306:3306"
         environment:
@@ -62,7 +63,8 @@ services:
             - docker_default 
         
     mysql-replica:
-        image: bitnami/mysql:5.7 user: root
+        image: bitnami/mysql:5.7
+        user: root
         environment:
             MYSQL_REPLICATION_MODE: slave
             MYSQL_REPLICATION_USER: replica
