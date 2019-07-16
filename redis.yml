@@ -14,6 +14,7 @@ services:
                 max_attempts: 5
         networks:
             - docker_default
+            
     redis:
         image: redis
         command: redis-server /usr/local/etc/redis/redis.conf
