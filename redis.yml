@@ -3,10 +3,8 @@ version: '3.7'
 services:
     redis-sentinel:
         image: bitnami/redis-sentinel
-        environment:
-            REDIS_MASTER_HOST: redis
-                    # volumes:
-                              # - /home/bijay/redis/sentinel.conf:/bitnami/redis-sentinel/conf/
+        volumes:
+            - /home/bijay/redis/sentinel.conf:/bitnami/redis-sentinel/conf/sentinel.conf
         deploy:
             mode: global
             restart_policy:
