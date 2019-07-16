@@ -37,17 +37,21 @@ services:
             - docker_default 
                
     mysql:
-        image: mysql:5.7     
-        ports: 
+        image: bitnami/mysql:5.7
+        user: root
+        ports:
             - "3306:3306"
+        volumes:
+            - /home/bijay/mysql/data:/bitnami/mysql/data
+            - /home/bijay/mysql/dumps:/docker-entrypoint-initdb.d
         environment:
             MYSQL_ROOT_PASSWORD: EhxTp7k7UpWQ9x8
             MYSQL_DATABASE: pctech
             MYSQL_USER: bijay
             MYSQL_PASSWORD: 12345
-        volumes:
-            - /home/bijay/mysql/data:/var/lib/mysql
-            - /home/bijay/mysql/dumps:/docker-entrypoint-initdb.d
+            MYSQL_REPLICATION_MODE: master
+            MYSQL_REPLICATION_USER: rep_user
+            MYSQL_REPLICATION_PASSWORD: 56789
         deploy:
             mode: replicated
             replicas: 1
@@ -56,7 +60,30 @@ services:
             placement:
                 constraints: [node.role == manager]
         networks:
-            - docker_default
+            - docker_default 
+            
+    mysql-replica:
+        image: bitnami/mysql:5.7
+        user: root
+        volumes:
+            - /home/bijay/mysql/data:/bitnami/mysql/data
+            - /home/bijay/mysql/dumps:/docker-entrypoint-initdb.d
+        environment:
+            MYSQL_REPLICATION_MODE: slave
+            MYSQL_REPLICATION_USER: rep_user
+            MYSQL_REPLICATION_PASSWORD: 56789
+            MYSQL_MASTER_HOST: mysql
+            MYSQL_MASTER_PORT_NUMBER: 3306
+            MYSQL_MASTER_ROOT_PASSWORD: EhxTp7k7UpWQ9x8
+        deploy:
+            mode: replicated
+            replicas: 2
+            restart_policy:
+                max_attempts: 5
+            placement:
+                constraints: [node.role == worker]
+        networks:
+            - docker_default 
             
     phpmyadmin:
         image: phpmyadmin/phpmyadmin
