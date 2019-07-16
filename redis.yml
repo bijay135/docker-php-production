@@ -2,9 +2,12 @@ version: '3.7'
 
 services:
     redis-sentinel:
-        image: joshula/redis-sentinel
-        volumes:
-            - /home/bijay/redis/sentinel.conf:/etc/redis/sentinel.conf
+        image: s7anley/redis-sentinel-docker
+        environment:
+            MASTER_NAME: mymaster
+            MASTER: redis
+            REDIS_PORT: 6379
+            QUORUM: 2
         deploy:
             mode: global
             restart_policy:
