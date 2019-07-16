@@ -3,9 +3,9 @@ version: '3.7'
 services:
     redis-sentinel:
         image: redis
-        command: redis-server /usr/local/etc/sentinel.conf --sentinel
+        command: redis-server /usr/local/etc/redis/sentinel.conf --sentinel
         volumes:
-            - /home/bijay/docker-swarm-mode/server/redis/sentinel.conf:/usr/local/etc/sentinel.conf
+            - /home/bijay/docker-swarm-mode/server/redis/sentinel.conf:/usr/local/etc/redis/sentinel.conf
         deploy:
             mode: global
             restart_policy:
