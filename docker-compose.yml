@@ -42,13 +42,13 @@ services:
         ports:
             - "3306:3306"
         environment:
-            MYSQL_REPLICATION_MODE: master
-            MYSQL_REPLICATION_USER: replica
-            MYSQL_REPLICATION_PASSWORD: 56789
             MYSQL_ROOT_PASSWORD: EhxTp7k7UpWQ9x8
             MYSQL_DATABASE: pctech
             MYSQL_USER: bijay
             MYSQL_PASSWORD: 12345
+            MYSQL_REPLICATION_MODE: master
+            MYSQL_REPLICATION_USER: replica
+            MYSQL_REPLICATION_PASSWORD: 56789 
         volumes:
             - /home/bijay/mysql/data:/bitnami/mysql/data
             - /home/bijay/mysql/dumps:/docker-entrypoint-initdb.d
@@ -66,12 +66,12 @@ services:
         image: bitnami/mysql:5.7
         user: root
         environment:
-            MYSQL_REPLICATION_MODE: slave
-            MYSQL_REPLICATION_USER: replica
-            MYSQL_REPLICATION_PASSWORD: 56789
             MYSQL_MASTER_HOST: mysql
             MYSQL_MASTER_PORT_NUMBER: 3306
             MYSQL_MASTER_ROOT_PASSWORD: EhxTp7k7UpWQ9x8
+            MYSQL_REPLICATION_MODE: slave
+            MYSQL_REPLICATION_USER: replica
+            MYSQL_REPLICATION_PASSWORD: 56789
         volumes:
             - /home/bijay/mysql/data:/bitnami/mysql/data
             - /home/bijay/mysql/dumps:/docker-entrypoint-initdb.d
