@@ -7,7 +7,7 @@ services:
             - "80:80"
             - "443:443"  
         volumes:
-            - /home/bijay/docker-swarm-mode/server/nginx/default.conf:/etc/nginx/conf.d/default.conf
+            - /home/bijay/docker-php-production/server/nginx/default.conf:/etc/nginx/conf.d/default.conf
             - /home/bijay/www:/var/www/html
             - /etc/letsencrypt:/etc/letsencrypt
         deploy:
@@ -24,7 +24,7 @@ services:
         build: ./server
         image: php-ext:7-fpm
         volumes:
-            - /home/bijay/docker-swarm-mode/server/php/php.ini:/usr/local/etc/php/conf.d/php.ini
+            - /home/bijay/docker-php-production/server/php/php.ini:/usr/local/etc/php/conf.d/php.ini
             - /home/bijay/www:/var/www/html
         deploy:
             mode: replicated
