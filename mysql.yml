@@ -32,6 +32,7 @@ services:
             MYSQL_REPLICATION_MODE: slave
             MYSQL_REPLICATION_USER: rep_user
             MYSQL_REPLICATION_PASSWORD: 56789
+            MYSQL_ROOT_PASSWORD: EhxTp7k7UpWQ9x8
             MYSQL_MASTER_HOST: mysql
             MYSQL_MASTER_PORT_NUMBER: 3306
             MYSQL_MASTER_ROOT_PASSWORD: EhxTp7k7UpWQ9x8
