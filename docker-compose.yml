@@ -63,8 +63,6 @@ services:
             
     mysql-replica:
         image: bitnami/mysql:5.7
-        ports:
-            - "3306"
         environment:
             MYSQL_REPLICATION_MODE: slave
             MYSQL_REPLICATION_USER: replicator
