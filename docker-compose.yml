@@ -38,8 +38,6 @@ services:
             
     mysql:
         image: bitnami/mysql:5.7
-        ports:
-            - "3306:3306"
         environment:
             MYSQL_ROOT_PASSWORD: EhxTp7k7UpWQ9x8
             MYSQL_REPLICATION_MODE: master
