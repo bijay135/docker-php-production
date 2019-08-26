@@ -10,13 +10,21 @@
 ## Prerequistics
 
 To build this enviroment you will need 3 nodes which can communicate with one another.
+
 - 1 will be master node and 2 will be worker nodes.
+
 - Add each other ip's in hosts file and use a friendly name for resolution if possible.
-- Install Docker, Docker-Compose and put nodes in swarm mode
+
+- Install Docker, Docker-Compose and put nodes in swarm mode.
+
 - 2 worker node join the master node, now our cluster is ready.
+
 - Install Certbot in master node only.
+
 - Setup GlusterFS in all three nodes.
-- Create a folder in all three nodes in same path for 'www' and 'letsencrypt'
+
+- Create a folder in all three nodes in same path for `www` and `letsencrypt`.
+
 - Create bricks for these folders and mount them in same path, now our code and certificates will be replicated across nodes
 
 ## Git clone the repository into your path
@@ -241,14 +249,23 @@ docker stack deploy -c docker-compose.yml
 
 ## launch using the master node ip and 9000 port to acess portainer
 
-### You can use cluster visualizer to check the status of all the containers and repliation
+- The stacks and servics can be checked easily using portainer
 
-### Nginx and PHP is load balanced using round robin
+- You can use cluster visualizer to check the status of all the containers and repliation
 
-### Add your project code to WWW folder which will be replicated across nodes by GlusterFS
 
-### Redis and Mysql master service will be in master node while replicas in worker nodes
+## Add your code to `WWW` folder
+
+- The project will be replicated across node by GlusterFS
 
 ## Generate certificates in master node using certbot
 
-### The certificates will be replicated to all nodes by GlusterFS
+- The certificates will be replicated to all nodes by GlusterFS
+
+## Access the website using the domain assiciated with master node ip
+
+- Nginx and PHP is load balanced using round robin
+
+- Redis and Mysql master service will be in master node while replicas in worker nodes
+
+- In case of any faults in container, node docker swarm will handle the recovery proccess
