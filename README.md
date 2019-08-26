@@ -6,6 +6,7 @@
 
 ## The Architecture Diagram
 
+![Architecture Diagram](doc/architecture-diagram.png)
 
 ## Prerequistics
 
@@ -27,7 +28,11 @@ To build this enviroment you will need 3 nodes which can communicate with one an
 
 - Create bricks for these folders and mount them in same path, now our code and certificates will be replicated across nodes
 
-## Git clone the repository into your path
+## Git clone the repository enter the folder
+
+```
+cd docker-php-production/
+```
 
 ## Modify the folder paths in these ymls
 
